@@ -12,3 +12,6 @@ libraryDependencies ++= Seq(
   cache,
   javaWs
 )
+
+compile in Test <<= PostCompile(Test)
+testOptions += Tests.Argument(TestFrameworks.JUnit, "-v", "-q", "-a")
