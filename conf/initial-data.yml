@@ -1,0 +1,8 @@
+- !!models.User
+    email:      rshah@bugbare.co.uk
+    name:       Rishi
+    password:   password
+
+    email:      amehay@bugbare.co.uk
+    name:       Anita
+    password:   secret
