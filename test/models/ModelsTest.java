@@ -1,19 +1,29 @@
 package models;
 
-import models.*;
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.*;
+
+import play.mvc.*;
+import play.libs.*;
 import play.test.*;
 import static play.test.Helpers.*;
+import com.avaje.ebean.Ebean;
+import com.google.common.collect.ImmutableMap;
 
 public class ModelsTest extends WithApplication {
+    @Override
+    protected FakeApplication provideFakeApplication() {
+        return Helpers.fakeApplication(Helpers.inMemoryDatabase());
+    }
 
-	@Override
-protected FakeApplication provideFakeApplication() {
-    return Helpers.fakeApplication(Helpers.inMemoryDatabase());
-}
-	
-	FakeApplication fakeAppWithMemoryDb = provideFakeApplication();
+    FakeApplication fakeAppWithMemoryDb = provideFakeApplication();
+
+    @Before
+    public void setUp() {
+        Ebean.save((List) Yaml.load("test-data.yml"));
+    }
+
 
 	@Test
 	public void createAndRetrieveUser() {

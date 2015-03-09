@@ -10,6 +10,7 @@ import views.html.*;
 
 public class Application extends Controller {
 
+@Security.Authenticated(Secured.class)
     public static Result index() {
 
         return ok(index.render(
@@ -50,4 +51,12 @@ public class Application extends Controller {
         	);
     	}
 	}
+
+    public static Result logout() {
+        session().clear();
+        flash("success", "You've been logged out");
+        return redirect(
+            routes.Application.login()
+        );
+    }
 }
